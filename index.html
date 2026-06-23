@@ -583,19 +583,6 @@
     .receipt-label { color: #666; }
     .receipt-value { color: #fff; font-weight: 600; }
 
-    .success-note {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      color: #aaa;
-      text-align: left;
-      margin-top: 15px;
-      line-height: 1.5;
-    }
-    .success-note strong { color: var(--primary); }
-
     /* --- FOOTER & MODALS --- */
     .site-footer {
         width: 100%;
@@ -842,7 +829,7 @@
     <div id="step3" class="step">
       <div class="step-content">
         <h2 class="step-title">Payment Gateway</h2>
-        <p class="subnote">Scan & pay the exact amount to auto-verify</p>
+        <p class="subnote">Scan & pay using any UPI app</p>
 
         <div class="payment-section">
           <div style="font-size: 14px; margin-bottom: 5px; color: var(--text-muted);">TOTAL PAYABLE (EXACT)</div>
@@ -868,10 +855,53 @@
           <!-- Automated Verification UI Container -->
           <div id="verificationStatus" class="auto-verify-box">
               <i class="fas fa-circle-notch fa-spin" style="color: var(--accent); font-size: 28px; margin-bottom: 12px;"></i>
-              <div style="font-family: var(--font-display); font-weight: 700; color: #fff; font-size: 18px; letter-spacing: 1px;">Listening for Payment...</div>
+              <div style="font-family: var(--font-display); font-weight: 700; color: #fff; font-size: 18px; letter-spacing: 1px;">Awaiting Payment...</div>
               <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
                   Please scan and pay exactly <strong id="exactAmountText" style="color: var(--primary);">₹0.00</strong>.<br>
-                  Our system will detect your payment automatically. Do not close this page.
+                  Our system will detect your payment automatically.
+              </div>
+          </div>
+
+          <!-- Supported UPI Apps Design Element - Aur zyada logos add kiye gaye hain -->
+          <div class="upi-apps-container" style="margin-top: 20px; text-align: center;">
+              <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Scan & Pay From Any UPI App</div>
+              <div style="display: flex; justify-content: center; gap: 8px; align-items: center; flex-wrap: wrap;">
+                  <!-- GPay (Fixed double text issue, ab sirf bada logo aayega) -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; color: #fff; display: flex; align-items: center; justify-content: center; height: 34px;">
+                      <i class="fab fa-google-pay" style="font-size: 28px;"></i>
+                  </div>
+                  <!-- PhonePe -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; font-weight: 700; font-size: 12px; color: #5f259f; display: flex; align-items: center; justify-content: center; height: 34px;">
+                      PhonePe
+                  </div>
+                  <!-- Paytm -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; font-weight: 800; font-size: 13px; color: #00baf2; display: flex; align-items: center; justify-content: center; height: 34px; font-style: italic;">
+                      Paytm
+                  </div>
+                  <!-- Amazon Pay (Naya joda gaya) -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; color: #fff; display: flex; align-items: center; justify-content: center; height: 34px;">
+                      <i class="fab fa-amazon-pay" style="font-size: 24px;"></i>
+                  </div>
+                  <!-- BHIM -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; font-weight: 700; font-size: 12px; color: #ff7d00; display: flex; align-items: center; justify-content: center; height: 34px;">
+                      BHIM
+                  </div>
+                  <!-- WhatsApp Pay (Naya joda gaya) -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; font-weight: 600; font-size: 13px; color: #25D366; display: flex; align-items: center; justify-content: center; height: 34px; gap: 5px;">
+                      <i class="fab fa-whatsapp" style="font-size: 16px;"></i> Pay
+                  </div>
+                  <!-- CRED -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; font-weight: 800; font-size: 11px; color: #fff; display: flex; align-items: center; justify-content: center; height: 34px; letter-spacing: 1px;">
+                      CRED
+                  </div>
+                  <!-- FamPay (Naya joda gaya) -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; font-weight: 700; font-size: 12px; color: #ffad00; display: flex; align-items: center; justify-content: center; height: 34px;">
+                      FamPay
+                  </div>
+                  <!-- MobiKwik (Naya joda gaya) -->
+                  <div style="background: var(--bg-panel); border: 1px solid var(--surface-border); padding: 0 12px; border-radius: 6px; font-weight: 700; font-size: 12px; color: #0052cc; display: flex; align-items: center; justify-content: center; height: 34px;">
+                      MobiKwik
+                  </div>
               </div>
           </div>
         </div>
@@ -920,13 +950,8 @@
           <div class="receipt-row"><span class="receipt-label">Time</span><span class="receipt-value" id="receipt-time">--</span></div>
         </div>
 
-        <div class="success-note">
-          <i class="fas fa-info-circle" style="color: var(--primary); margin-right: 5px;"></i>
-          <strong>Note:</strong> UC transfer is strictly subject to successful payment verification. If the transaction is found to be incomplete, fraudulent, or failed, the UC will not be credited to your account.
-        </div>
-
         <div id="newOrderBtnWrap" style="margin-top: 20px;">
-          <button type="button" class="btn btn-primary" onclick="location.reload()" id="newOrderBtn" style="display:none;">Place Another Order</button>
+          <button type="button" class="btn btn-primary" onclick="location.reload()" id="newOrderBtn">Place Another Order</button>
         </div>
       </div>
     </div>
@@ -946,7 +971,7 @@
     </div>
   </div>
 
-  <!-- MODALS (Kept exactly identical as requested) -->
+  <!-- MODALS -->
   <div class="modal-overlay" id="termsModal" onclick="closeModalOutside(event, 'termsModal')"><div class="modal-box"><div class="modal-header"><h3>Terms & Conditions</h3><button class="close-btn" onclick="closeModal('termsModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><h4>1. Introduction</h4><p>By using this website, you agree to these Terms and Conditions. This platform provides digital top-up services for BGMI UC.</p><h4>2. Services Provided</h4><p>We facilitate the transfer of digital in-game currency (UC) to the provided Player UID. It is the user's responsibility to enter the correct UID.</p><h4>3. Payment</h4><p>All transactions are processed securely via UPI. We do not store your credit card or banking details.</p><h4>4. User Responsibilities</h4><p>You must ensure the accuracy of the Player ID (UID) provided. Transactions processed to incorrect UIDs due to user error cannot be reversed.</p></div></div></div>
   <div class="modal-overlay" id="privacyModal" onclick="closeModalOutside(event, 'privacyModal')"><div class="modal-box"><div class="modal-header"><h3>Privacy Policy</h3><button class="close-btn" onclick="closeModal('privacyModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><h4>1. Information We Collect</h4><p>We collect your BGMI Player ID (UID) and In-Game Name (IGN) solely for the purpose of delivering the digital product. We process payments via UPI and do not store financial data.</p><h4>2. How We Use Your Data</h4><p>Your data is used strictly for order fulfillment, customer support, and transaction verification.</p><h4>3. Data Sharing</h4><p>We do not sell, trade, or rent user data to third parties. Information is only shared with our payment gateway (UPI) as required to process your transaction.</p></div></div></div>
   <div class="modal-overlay" id="refundModal" onclick="closeModalOutside(event, 'refundModal')"><div class="modal-box"><div class="modal-header"><h3>Refund & Cancellation</h3><button class="close-btn" onclick="closeModal('refundModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><h4>1. Digital Goods Policy</h4><p>Because the products we sell are strictly digital in-game currency, <strong>all sales are final</strong>. Once the UC is successfully transferred to the provided UID, no refunds or cancellations can be processed.</p><h4>2. Failed Transactions</h4><p>If your payment is deducted but the order fails on our end, a full refund will be automatically initiated to your original payment method within 5-7 business days.</p><h4>3. Incorrect UID</h4><p>We are not responsible for UC sent to an incorrect UID provided by the user. No refunds will be issued in such cases.</p></div></div></div>
@@ -1316,10 +1341,10 @@
       vStatus.style.borderColor = "rgba(0, 224, 255, 0.2)";
       vStatus.innerHTML = `
           <i class="fas fa-circle-notch fa-spin" style="color: var(--accent); font-size: 28px; margin-bottom: 12px;"></i>
-          <div style="font-family: var(--font-display); font-weight: 700; color: #fff; font-size: 18px; letter-spacing: 1px;">Listening for Payment...</div>
+          <div style="font-family: var(--font-display); font-weight: 700; color: #fff; font-size: 18px; letter-spacing: 1px;">Awaiting Payment...</div>
           <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
-              Please scan and pay exactly <strong id="exactAmountText" style="color: var(--primary);">₹0.00</strong>.<br>
-              Our system will detect your payment automatically. Do not close this page.
+              Please scan and pay exactly <strong id="exactAmountText" style="color: var(--primary);">₹${exactPriceStr}</strong>.<br>
+              Our system will detect your payment automatically.
           </div>
       `;
       showStep(2);
@@ -1418,7 +1443,6 @@
                 if (isNightTime) {
                     document.getElementById('gameLoaderWrap').style.display = 'none';
                     document.getElementById('nightMessage').style.display = 'block';
-                    document.getElementById('newOrderBtn').style.display = 'block';
                 } else {
                     document.getElementById('gameLoaderWrap').style.display = 'block';
                     document.getElementById('nightMessage').style.display = 'none';
@@ -1456,7 +1480,6 @@
                 
                 document.getElementById('gameLoaderWrap').style.display = 'none';
                 document.getElementById('finalSuccessMsg').style.display = 'block';
-                document.getElementById('newOrderBtn').style.display = 'block';
                 
                 localStorage.removeItem('bgmiTimerEnd');
                 createConfetti();
